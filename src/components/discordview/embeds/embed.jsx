@@ -11,7 +11,7 @@ import ThumbnailContainer from '../thumbnail';
 
 const Embed = (props) => {
     return <div className="accessory"
-        style={{ 'margin-bottom': '0.5em' }}>
+        style={{ marginBottom: '0.5em' }}>
         <ColorpillContainer index={props.index} />
         <div className="embed embed-rich">
             <AuthorContainer index={props.index} />

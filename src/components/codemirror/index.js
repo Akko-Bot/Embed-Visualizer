@@ -52,7 +52,6 @@ const filterState = (state) => {
 }
 
 const mapState = (state) => {
-  console.log(state)
   const mappedState = {
     plainText: state.messageBody,
     embeds: state.embeds.map(embed => ({
@@ -72,8 +71,13 @@ const mapState = (state) => {
 }
 
 export const mapStateToProps = (state) => {
+  state = mapState(state);
+  state = {
+    ...state,
+    embeds: state.embeds.map(e => filterState(e))
+  }
   return {
-    value: JSON.stringify(filterState(mapState(state)), null, '  ')
+    value: JSON.stringify(filterState(state), null, '  ')
   }
 }
 

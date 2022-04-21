@@ -4,7 +4,6 @@ import EmbedColorPill from './colorpill'
 
 const mapStateToProps = (state, ownProps) => {
   const item = state.embeds[ownProps.index];
-  console.log(item, ownProps)
   return {
     color: item.color,
     ...ownProps

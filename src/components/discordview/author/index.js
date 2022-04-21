@@ -3,7 +3,6 @@ import { setAuthor } from 'constants/actions'
 import EmbedAuthor from './author'
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state.embeds[ownProps.index])
   return {
     ...state.embeds[ownProps.index].author
   }

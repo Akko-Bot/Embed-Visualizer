@@ -24,7 +24,6 @@ const embedInitState =  {
   };
 
 const embed = (state = embedInitState, action) => {
-  console.log(action)
     switch (action.type) {
         case SET_DESCRIPTION:
             return {

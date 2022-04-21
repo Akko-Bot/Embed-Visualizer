@@ -2,7 +2,6 @@ import { ADD_FIELD, REMOVE_FIELD, SET_FIELD, REMOVE_ALL_FIELDS } from 'constants
 import {field, fieldInitState} from './field'
 
 const fields = (state = [], action) => {
-  console.log(action)
     switch (action.type) {
       case ADD_FIELD:
           return [
