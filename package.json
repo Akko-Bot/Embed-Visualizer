@@ -4,7 +4,7 @@
   "license": "MIT",
   "version": "1.0.0",
   "private": true,
-  "homepage": "http://nadekobot.me/embedbuilder/",
+  "homepage": "http://eb2.nadeko.bot/",
   "devDependencies": {
     "react-scripts": "0.8.5",
     "rimraf": "^2.5.4"
