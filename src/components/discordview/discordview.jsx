@@ -1,15 +1,8 @@
 import React from 'react';
 
-import AuthorContainer from './author';
-import TitleContainer from './title';
-import ColorpillContainer from './colorpill';
-import DescriptionContainer from './description';
-import FieldsContainer from './fields';
-import FooterContainer from './footer';
-import ImageContainer from './image';
-import ThumbnailContainer from './thumbnail';
 import MessageBodyContainer from './messagebody';
 import MessageTimestamp from 'components/common/timestamp';
+import EmbedsContainer from './embeds';
 
 const CozyMessageHeader = ({ compactMode, username }) => {
   if (compactMode) {
@@ -70,13 +63,8 @@ const DiscordViewWrapper = ({ darkTheme, children }) => {
 const DiscordView = React.createClass({
   getDefaultProps() {
     return {
-      // TODO: make these two configurable?
       username: 'Discord Bot',
       avatar_url: 'https://cdn.discordapp.com/embed/avatars/0.png',
-
-      // hehe
-      darkTheme: true,
-      compactMode: false
     };
   },
 
@@ -92,31 +80,20 @@ const DiscordView = React.createClass({
     return (
       <div className={cls}>
         <ErrorHeader error={error} />
-        <DiscordViewWrapper darkTheme={darkTheme}>
+        <DiscordViewWrapper darkTheme={true}>
           <div className={`message-group hide-overflow ${compactMode ? 'compact' : ''}`}>
-            <Avatar url={avatar_url} compactMode={compactMode} />
+            <Avatar url={avatar_url} compactMode={false} />
             <div className="comment">
               <div className="message first">
-                <CozyMessageHeader username={username} compactMode={compactMode} />
+                <CozyMessageHeader username={username} compactMode={false} />
                 <div className="message-text">
                   <MessageBodyContainer
                     username={username}
-                    compactMode={compactMode}
+                    compactMode={false}
                     webhookMode={webhookMode}
                   />
                 </div>
-                <div className="accessory">
-                  <ColorpillContainer/>
-                  <div className="embed embed-rich">
-                    <AuthorContainer/>
-                    <TitleContainer/>
-                    <DescriptionContainer/>
-                    <FieldsContainer/>
-                    <ImageContainer/>
-                    <FooterContainer/>
-                  </div>
-                  <ThumbnailContainer/>
-                </div>
+                <EmbedsContainer />
               </div>
             </div>
           </div>

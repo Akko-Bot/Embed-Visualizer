@@ -3,17 +3,19 @@ import { setDescription } from 'constants/actions'
 import EmbedDescription from './description'
 import {parseAllowLinks} from 'lib/markdown'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  const desc = state.embeds[ownProps.index].description;
   return {
-    parsedContent: parseAllowLinks(state.description),
-    content: state.description
+    parsedContent: parseAllowLinks(desc),
+    content: desc,
+    ...ownProps
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdate: (content) => {
-      dispatch(setDescription(content))
+    onUpdate: (index, content) => {
+      dispatch(setDescription(index, content))
     }
   }
 }

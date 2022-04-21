@@ -1,6 +1,11 @@
 import { connect } from 'react-redux'
 import { 
-  setMessageBody, 
+  setMessageBody,
+
+  addEmbed,
+  removeAllEmbeds,
+
+
   setAuthor, 
   setDescription, 
   setTitle, 
@@ -9,8 +14,7 @@ import {
   setImage,
   setThumbnail,
   addField,
-  setField,
-  removeAllFields
+  setField
 } from 'constants/actions'
 import CodeMirror from './codemirror'
 
@@ -34,7 +38,6 @@ const filterState = (state) => {
       for (var prop in value) {
         if (notEmptyString(value[prop])) {
           if (!(key in editorState)) editorState[key] = {}
-          console.log(key, prop)
           editorState[key][prop] = value[prop]
         }
       }
@@ -49,24 +52,26 @@ const filterState = (state) => {
 }
 
 const mapState = (state) => {
+  console.log(state)
   const mappedState = {
     plainText: state.messageBody,
-    title: state.title.title,
-    url: state.title.url,
-    description: state.description,
-    author: {...state.author},
-    color: colorToInteger(state.color),
-    footer: {...state.footer},
-    thumbnail: state.thumbnail,
-    image: state.image,
-    fields: state.fields
+    embeds: state.embeds.map(embed => ({
+      title: embed.title.title,
+      url: embed.title.url,
+      description: embed.description,
+      author: {...embed.author},
+      color: colorToInteger(embed.color),
+      footer: {...embed.footer},
+      thumbnail: embed.thumbnail,
+      image: embed.image,
+      fields: embed.fields
+    }))
   }
 
   return mappedState
 }
 
 export const mapStateToProps = (state) => {
-
   return {
     value: JSON.stringify(filterState(mapState(state)), null, '  ')
   }
@@ -77,22 +82,24 @@ const mapDispatchToProps = (dispatch) => {
     onChange: (fromJSON, change) => {
       const defaultObject = {
         plainText: '',
-        title: '',
-        url: '',
-        description: '',
-        author: {
-          name: '',
+        embeds: [{
+          title: '',
           url: '',
-          icon_url: '',          
-        },
-        color: 0,
-        footer: {
-          text: '',
-          icon_url: ''
-        },
-        thumbnail: '',
-        image: '',
-        fields: []
+          description: '',
+          author: {
+            name: '',
+            url: '',
+            icon_url: '',          
+          },
+          color: 0,
+          footer: {
+            text: '',
+            icon_url: ''
+          },
+          thumbnail: '',
+          image: '',
+          fields: []
+        }]
       }
 
       for (var prop in fromJSON) {
@@ -102,18 +109,22 @@ const mapDispatchToProps = (dispatch) => {
       }
       const lump = Object.assign(defaultObject, fromJSON) 
 
-      dispatch(setMessageBody(lump.plainText)) 
-      dispatch(setAuthor({...lump.author})) 
-      dispatch(setDescription(lump.description)) 
-      dispatch(setTitle({title: lump.title, url: lump.url}))
-      dispatch(setFooter({...lump.footer})) 
-      dispatch(setColor(integerToColor(lump.color)))
-      dispatch(setImage(lump.image))
-      dispatch(setThumbnail(lump.thumbnail))
-      dispatch(removeAllFields())
-      lump.fields.forEach((f,i) => {
-        dispatch(addField())
-        dispatch(setField(i, f))
+      dispatch(setMessageBody(lump.plainText));
+      dispatch(removeAllEmbeds())
+      lump.embeds.forEach((e, index) => {
+        dispatch(addEmbed());
+        dispatch(setDescription(index, e.description)) 
+
+        dispatch(setAuthor(index, {...e.author}))
+        dispatch(setTitle(index, {title: e.title, url: e.url}))
+        dispatch(setFooter(index, {...e.footer})) 
+        dispatch(setColor(index, integerToColor(e.color)))
+        dispatch(setImage(index, e.image))
+        dispatch(setThumbnail(index, e.thumbnail))
+        e.fields.forEach((f,i) => {
+          dispatch(addField())
+          dispatch(setField(index, f, i))
+        })
       })
     },
   }

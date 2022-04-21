@@ -1,6 +1,7 @@
 import { SET_COLOR } from 'constants/types';
 
-const color = (state = '#00d084', action) => {
+const colorInitState = '#00d084';
+const color = (state = colorInitState, action) => {
     switch (action.type) {
       case SET_COLOR:
         return action.color
@@ -9,4 +10,4 @@ const color = (state = '#00d084', action) => {
     }
   }
   
-  export default color
+  export { color, colorInitState }

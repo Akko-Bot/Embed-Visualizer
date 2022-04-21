@@ -15,34 +15,34 @@ class Clipboard extends React.Component {
 
     let prefix = "";
     const vc = this.state.viewCommand;
-    if (this.state.viewType == 1)
-      prefix = ".acr \"" + vc + "\" ";
-    else if (this.state.viewType == 2)
-      prefix = ".. \"" + vc + "\" ";
+    if (this.state.viewType === 1)
+      prefix = ".exa \"" + vc + "\" ";
+    else if (this.state.viewType === 2)
+      prefix = ".quoteadd \"" + vc + "\" ";
     return (
       <div>
         <div className="tabs align-middle">
           <div 
-            className={typeTabClasses + (this.state.viewType == 0 ? " selected" : "")} 
+            className={typeTabClasses + (this.state.viewType === 0 ? " selected" : "")} 
             onClick={() => this.setState({viewType: 0})}>
             None
           </div>
           <div 
-            className={typeTabClasses + (this.state.viewType == 1 ? " selected" : "")} 
+            className={typeTabClasses + (this.state.viewType === 1 ? " selected" : "")} 
             onClick={() => this.setState({viewType: 1})}>
-            Custom Reaction
+            Expression
           </div>
           <div 
-            className={typeTabClasses + (this.state.viewType == 2 ? " selected" : "")} 
+            className={typeTabClasses + (this.state.viewType === 2 ? " selected" : "")} 
             onClick={() => this.setState({viewType: 2})}>
             Quote
           </div>
-        </div>,
+        </div>
         <div className="cmd-name">
           <input
             onFocus={(e) => e.target.select()}
             className="cmd-action input"
-            hidden={this.state.viewType == 0}
+            hidden={this.state.viewType === 0}
             defaultValue={this.state.viewCommand}
             type="text" placeholder="Name"
             onChange={(e) => this.setState({viewCommand: e.target.value})} />

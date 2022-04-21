@@ -25,7 +25,7 @@ class EmbedField extends React.Component {
       key="name"
       placeholder="Name:"
       value={this.props.name}
-      onChange={(ev) => this.props.onUpdate( this.props.index, {name: ev.target.value})}/> : 
+      onChange={(ev) => this.props.onUpdate(this.props.index, {name: ev.target.value}, this.props.findex)}/> : 
       this.props.parsedName}
     </div>
   }
@@ -39,7 +39,7 @@ class EmbedField extends React.Component {
       key="value"
       placeholder="Value:"
       value={this.props.value}
-      onChange={(ev)=> this.props.onUpdate(this.props.index, {value: ev.target.value})}/> : 
+      onChange={(ev)=> this.props.onUpdate(this.props.index, {value: ev.target.value}, this.props.findex)}/> : 
       this.props.parsedValue}
     </div>
   }
@@ -58,11 +58,11 @@ class EmbedField extends React.Component {
         <input
           type="checkbox"
           defaultChecked={true}
-          onClick={(ev)=>this.props.onUpdate(this.props.index, {inline: ev.target.checked})}>
+          onClick={(ev)=>this.props.onUpdate(this.props.index, {inline: ev.target.checked}, this.props.findex)}>
         </input>
         <span>Inline</span>
         <button 
-          onClick={()=>this.props.onRemove(this.props.key)}>
+          onClick={()=>this.props.onRemove(this.props.index, this.props.findex)}>
           Remove
         </button>
       </div>

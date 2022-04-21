@@ -2,14 +2,14 @@ import { connect } from 'react-redux'
 import { setImage } from 'constants/actions'
 import EmbedImage from './image'
 
-const mapStateToProps = (state) => {
-  return {url: state.image}
+const mapStateToProps = (state, ownProps) => {
+  return {url: state.embeds[ownProps.index].image}
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdate: (url) => {
-      dispatch(setImage(url))
+    onUpdate: (index, url) => {
+      dispatch(setImage(index, url))
     }
   }
 }

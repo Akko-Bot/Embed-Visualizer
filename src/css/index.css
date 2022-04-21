@@ -123,10 +123,6 @@
   font-weight: 300;
   font-size: 14px;
 }
-
-.CodeMirror {
-  border-radius: 5px;
-}
 /* -- codemirror -- */
 
 /* -- highlight.js -- */
@@ -360,4 +356,17 @@ Original One Light Syntax theme from https://github.com/atom/one-light-syntax
 
 .cmd-btn:active{
   background: #525559;
+}
+
+.eb-delete {
+  position: absolute;
+  width: auto !important;
+  padding: 0.5em !important;
+  font-size: 15px !important;
+  margin-left: -5.2em;
+}
+
+.twitter-picker {
+  position: absolute !important;
+  z-index: 100;
 }

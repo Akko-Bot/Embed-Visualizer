@@ -2,16 +2,19 @@ import { connect } from 'react-redux'
 import { setColor } from 'constants/actions'
 import EmbedColorPill from './colorpill'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  const item = state.embeds[ownProps.index];
+  console.log(item, ownProps)
   return {
-    color: state.color
+    color: item.color,
+    ...ownProps
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdate: (color) => {
-      dispatch(setColor(color))
+    onUpdate: (index, color) => {
+      dispatch(setColor(index, color))
     }
   }
 }

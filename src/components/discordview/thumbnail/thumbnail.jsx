@@ -23,7 +23,7 @@ class EmbedThumbnail extends React.Component {
         placeholder="Thumbnail URL:"
         type="text"
         value={this.props.url}
-        onChange={(ev)=>this.props.onUpdate(ev.target.value)}/> :
+        onChange={(ev)=>this.props.onUpdate(this.props.index, ev.target.value)}/> :
       <img
         alt="X"
         src={this.props.url} 

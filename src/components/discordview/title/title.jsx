@@ -24,7 +24,7 @@ class EmbedTitle extends React.Component {
         type="text"
         placeholder="Title URL:"
         value={this.props.url}
-        onChange={(ev)=>this.props.onUpdate({url: ev.target.value})}
+        onChange={(ev)=>this.props.onUpdate(this.props.index, {url: ev.target.value})}
       /> :
       <button onClick={()=>this.setState({isUrlEdited: true})}>
         Add URL
@@ -37,7 +37,7 @@ class EmbedTitle extends React.Component {
       key="title"
       type="text"
       value={this.props.title}
-      onChange={(ev)=>this.props.onUpdate({title: ev.target.value})}
+      onChange={(ev)=>this.props.onUpdate(this.props.index, {title: ev.target.value})}
     />;
   }
   

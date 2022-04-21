@@ -1,6 +1,12 @@
 //color, author, title, url, description, fields, thumbnail, image, timestamp, footer
 
 export const SET_MESSAGE_BODY = 'set_messagebody';
+
+export const ADD_EMBED = 'add_embed';
+export const SET_EMBED = 'set_embed';
+export const REMOVE_EMBED = 'remove_embed';
+export const REMOVE_ALL_EMBEDS = 'remove_all_embeds';
+
 export const SET_TITLE = 'set_title'
 export const SET_LINK_URL = 'set_link_url'
 export const SET_COLOR = 'set_color'

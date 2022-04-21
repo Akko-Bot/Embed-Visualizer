@@ -23,7 +23,7 @@ class EmbedImage extends React.Component {
         placeholder="Image URL:"
         type="text"
         value={this.props.url}
-        onChange={(ev)=>this.props.onUpdate(ev.target.value)}/> :
+        onChange={(ev)=>this.props.onUpdate(this.props.index, ev.target.value)}/> :
       <a
       className="embed-thumbnail embed-thumbnail-rich edit-button-modal-wrapper">
         <img

@@ -26,7 +26,7 @@ class EmbedFooter extends React.Component {
       placeholder="Footer icon URL:"
       type="text"
       value={this.props.icon_url}
-      onChange={(ev)=>this.props.onUpdate({icon_url: ev.target.value})}/> :
+      onChange={(ev)=>this.props.onUpdate(this.props.index, {icon_url: ev.target.value})}/> :
     <img
       alt="X"
       src={this.props.icon_url} 
@@ -43,7 +43,7 @@ class EmbedFooter extends React.Component {
       placeholder="Footer text:"
       type="text"
       value={this.props.text}
-      onChange={(ev)=>this.props.onUpdate({text: ev.target.value})}
+      onChange={(ev)=>this.props.onUpdate(this.props.index, {text: ev.target.value})}
     />;
   }
 

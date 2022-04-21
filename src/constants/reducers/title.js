@@ -1,11 +1,11 @@
 import { SET_TITLE } from 'constants/types';
 
-const initState = {
+const titleInitState = {
     title: '',
     url: ''
 }
 
-const title = (state = initState, action) => {
+const title = (state = titleInitState, action) => {
     switch (action.type) {
         case SET_TITLE:
             return {...state, ...action.title}
@@ -14,4 +14,4 @@ const title = (state = initState, action) => {
     }
   }
   
-  export default title
+  export { titleInitState, title }

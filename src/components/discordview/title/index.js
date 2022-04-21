@@ -3,17 +3,20 @@ import { setTitle } from 'constants/actions'
 import { parseEmbedTitle } from 'lib/markdown'
 import EmbedTitle from './title'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  const e = state.embeds[ownProps.index];
+  console.log(e)
   return {
-    parsedTitle: parseEmbedTitle(state.title.title),
-    ...state.title
+    parsedTitle: parseEmbedTitle(e.title.title),
+    title: e.title.title,
+    url: e.title.url
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdate: (titleContent) => {
-      dispatch(setTitle(titleContent))
+    onUpdate: (index, titleContent) => {
+      dispatch(setTitle(index, titleContent))
     },
   }
 }

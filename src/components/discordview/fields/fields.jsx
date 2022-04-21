@@ -6,14 +6,17 @@ const EmbedFields = (props)=> {
   className="embed-fields">
     {props.fields.map((f, i) => 
       <EmbedField 
-      key={i} 
-      onUpdate={props.onUpdateField}
-      onRemove={props.onRemoveField} 
-      {...f} />
+        key={i}
+        index={props.index}
+        findex={i}
+        onUpdate={props.onUpdateField}
+        onRemove={props.onRemoveField} 
+        {...f}
+      />
     )}
     <div className="embed-field embed-field-inline">
       <button
-      onClick={()=>props.onAddField()}>
+      onClick={()=>props.onAddField(props.index)}>
         Add field
       </button>
     </div>

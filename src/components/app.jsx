@@ -1,21 +1,14 @@
 import React from 'react';
-import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import visualApp from 'constants/reducers'
-import Button from 'components/common/button';
 import CodeMirrorContainer from 'components/codemirror';
 import ClipboardContainer from 'components/clipboard';
 import DiscordView from 'components/discordview/discordview';
 
 let store = createStore(visualApp)
 
-const FooterButton = (props) => {
-  return <Button {...props} className='shadow-1 shadow-hover-2 shadow-up-hover' />;
-};
-
 const App = React.createClass({
-  // TODO: serialize input, webhookMode, compactMode and darkTheme to query string?
 
   getInitialState() {
     return {
@@ -54,10 +47,6 @@ const App = React.createClass({
   },
 
   render() {
-    const webhookModeLabel = `${this.state.webhookMode ? 'Dis' : 'En'}able webhook mode`;
-    const themeLabel = `${this.state.darkTheme ? 'Light' : 'Dark'} theme`;
-    const compactModeLabel = `${this.state.compactMode ? 'Cozy' : 'Compact'} mode`;
-
     return (
       <Provider store={store}>
         <main className="vh-100-l bg-blurple whitney ">

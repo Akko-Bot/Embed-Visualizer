@@ -87,7 +87,7 @@ const botMessageSchema = {
       "maxLength": 2000,
       "trim": true
     },
-    "embed": embedSchema
+    "embeds": [embedSchema]
   },
   "atLeastOneOf": ["content", "embed"]
 };

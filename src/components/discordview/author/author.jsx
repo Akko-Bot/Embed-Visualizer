@@ -28,7 +28,7 @@ class EmbedAuthor extends React.Component {
       type="text"
       key="icon-url"
       value={this.props.icon_url}
-      onChange={(ev)=>this.props.onUpdate({icon_url: ev.target.value})}/> :
+      onChange={(ev)=>this.props.onUpdate(this.props.index, {icon_url: ev.target.value})}/> :
     <img
       alt="X"
       src={this.props.icon_url} 
@@ -44,7 +44,7 @@ class EmbedAuthor extends React.Component {
         type="text"
         placeholder="Name URL:"
         value={this.props.url}
-        onChange={(ev)=>this.props.onUpdate({url: ev.target.value})}
+        onChange={(ev)=>this.props.onUpdate(this.props.index, {url: ev.target.value})}
       /> :
       <button onClick={()=>this.setState({isUrlEdited: true})}>
         Add URL
@@ -57,7 +57,7 @@ class EmbedAuthor extends React.Component {
       key="name"
       type="text"
       value={this.props.name}
-      onChange={(ev)=>this.props.onUpdate({name: ev.target.value})}
+      onChange={(ev)=>this.props.onUpdate(this.props.index, {name: ev.target.value})}
     />;
   }
   

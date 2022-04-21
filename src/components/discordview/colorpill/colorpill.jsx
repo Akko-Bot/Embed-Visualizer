@@ -10,7 +10,7 @@ class EmbedColorPill extends React.Component{
   }
 
   handleChangeComplete = (color) => {
-    this.props.onUpdate(color.hex)
+    this.props.onUpdate(this.props.index, color.hex)
     this.setState({isEdited: false})
   };
   

@@ -4,14 +4,15 @@ import { parseEmbedTitle, parseAllowLinks } from 'lib/markdown'
 import EmbedFields from './fields'
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    fields: state.fields.map((field, index)=>{
+    fields: state.embeds[ownProps.index].fields.map((field, findex)=>{
       return {
         ...field,
-        index,
+        index: ownProps.index,
+        findex,
         parsedName: parseEmbedTitle(field.name),
-        parsedValue:parseAllowLinks(field.value)
+        parsedValue: parseAllowLinks(field.value)
       }
     })
   }
@@ -19,14 +20,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdateField: (index, field) => {
-      dispatch(setField(index, field))
+    onUpdateField: (index, field, findex) => {
+      dispatch(setField(index, field, findex))
     },
-    onAddField: () => {
-      dispatch(addField())
+    onAddField: (index) => {
+      dispatch(addField(index))
     },
-    onRemoveField: index => {
-      dispatch(removeField(index))
+    onRemoveField: (index, findex) => {
+      dispatch(removeField(index, findex))
     }
   }
 }

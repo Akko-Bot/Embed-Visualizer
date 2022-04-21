@@ -2,16 +2,17 @@ import { connect } from 'react-redux'
 import { setAuthor } from 'constants/actions'
 import EmbedAuthor from './author'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  console.log(state.embeds[ownProps.index])
   return {
-    ...state.author
+    ...state.embeds[ownProps.index].author
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdate: (authorContent) => {
-      dispatch(setAuthor(authorContent))
+    onUpdate: (index, authorContent) => {
+      dispatch(setAuthor(index, authorContent))
     },
   }
 }
