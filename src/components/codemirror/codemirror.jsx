@@ -92,7 +92,8 @@ const CodeMirror = React.createClass({
       if (this.props.onChange && change.origin !== 'setValue') {
         this.props.onChange(parsed, change);
       }
-    } catch (SyntaxError) {
+    } catch (e) {
+      console.log(e)
       this.props.updateError('Invalid JSON!')
     }
   },

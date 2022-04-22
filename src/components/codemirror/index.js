@@ -2,29 +2,13 @@ import { connect } from 'react-redux'
 import { 
   setMessageBody,
 
-  addEmbed,
   removeAllEmbeds,
+  setEmbed,
 
-
-  setAuthor, 
-  setDescription, 
-  setTitle, 
-  setFooter,
-  setColor,
-  setImage,
-  setThumbnail,
   addField,
   setField
 } from 'constants/actions'
 import CodeMirror from './codemirror'
-
-const colorToInteger = (color) => {
-  return parseInt(color.slice(1), 16)
-}
-
-const integerToColor = (number) => {
-  return '#' + ('00000' + (number | 0).toString(16)).substr(-6);
-}
 
 const filterState = (state) => {
   const editorState = {}
@@ -53,13 +37,13 @@ const filterState = (state) => {
 
 const mapState = (state) => {
   const mappedState = {
-    plainText: state.messageBody,
+    content: state.messageBody,
     embeds: state.embeds.map(embed => ({
-      title: embed.title.title,
-      url: embed.title.url,
+      title: embed.title,
+      url: embed.url,
       description: embed.description,
       author: {...embed.author},
-      color: colorToInteger(embed.color),
+      color: embed.color,
       footer: {...embed.footer},
       thumbnail: embed.thumbnail,
       image: embed.image,
@@ -85,7 +69,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onChange: (fromJSON, change) => {
       const defaultObject = {
-        plainText: '',
+        content: '',
         embeds: [{
           title: '',
           url: '',
@@ -113,22 +97,23 @@ const mapDispatchToProps = (dispatch) => {
       }
       const lump = Object.assign(defaultObject, fromJSON) 
 
-      dispatch(setMessageBody(lump.plainText));
+      dispatch(setMessageBody(lump.content));
       dispatch(removeAllEmbeds())
       lump.embeds.forEach((e, index) => {
-        dispatch(addEmbed());
-        dispatch(setDescription(index, e.description)) 
-
-        dispatch(setAuthor(index, {...e.author}))
-        dispatch(setTitle(index, {title: e.title, url: e.url}))
-        dispatch(setFooter(index, {...e.footer})) 
-        dispatch(setColor(index, integerToColor(e.color)))
-        dispatch(setImage(index, e.image))
-        dispatch(setThumbnail(index, e.thumbnail))
-        e.fields.forEach((f,i) => {
-          dispatch(addField())
-          dispatch(setField(index, f, i))
-        })
+        // dispatch(addEmbed());
+        dispatch(setEmbed(index, e))
+        // dispatch(setDescription(index, e.description))
+        // dispatch(setAuthor(index, {...e.author}))
+        // dispatch(setTitle(index, {title: e.title, url: e.url}))
+        // dispatch(setFooter(index, {...e.footer})) 
+        // dispatch(setColor(index, integerToColor(e.color)))
+        // dispatch(setImage(index, e.image))
+        // dispatch(setThumbnail(index, e.thumbnail))
+        if(typeof e.fields !== 'undefined')
+          e.fields.forEach((f,i) => {
+            dispatch(addField())
+            dispatch(setField(index, f, i))
+          })
       })
     },
   }

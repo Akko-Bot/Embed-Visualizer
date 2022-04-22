@@ -2,10 +2,18 @@ import { connect } from 'react-redux'
 import { setColor } from 'constants/actions'
 import EmbedColorPill from './colorpill'
 
+// const integerToColor = (number) => {
+//   return '#' + ('00000' + (number | 0).toString(16)).substr(-6);
+// }
+
+// const colorToInteger = (color) => {
+//   return parseInt(color.slice(1), 16)
+// }
+
 const mapStateToProps = (state, ownProps) => {
-  const item = state.embeds[ownProps.index];
+  const embed = state.embeds[ownProps.index];
   return {
-    color: item.color,
+    color: embed.color,
     ...ownProps
   }
 }

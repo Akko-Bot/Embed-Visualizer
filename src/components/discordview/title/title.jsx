@@ -49,7 +49,7 @@ class EmbedTitle extends React.Component {
     <div className="edit-button-modal">
       <button onClick={(e)=>{
         e.preventDefault()
-        this.setState({isEdited: true})
+        this.setState({isEdited: true, isUrlEdited: true})
       }}>
         Edit
       </button>
@@ -66,14 +66,16 @@ class EmbedTitle extends React.Component {
   }
 
   render(){
-    return this.state.isEdited ?
-      <div className="embed-title">
-        {this.renderTitlePrompt()}
-        {this.renderUrlPrompt()}
-      </div> :
-      (this.props.url.length>0) ?
-      this.renderLink() :
-      this.renderTitle()
+    return <div className='embed-title-container'>
+      {this.state.isEdited ?
+        <div className="embed-title">
+          {this.renderTitlePrompt()}
+          {this.renderUrlPrompt()}
+        </div> :
+        (this.props.url.length>0) ?
+        this.renderLink() :
+        this.renderTitle()}
+      </div>
   }
 }
 

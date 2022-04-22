@@ -1,11 +1,9 @@
 import { SET_COLOR, SET_DESCRIPTION } from 'constants/types';
-import { ADD_FIELD, REMOVE_ALL_FIELDS, REMOVE_FIELD, SET_AUTHOR, SET_FIELD, SET_FOOTER, SET_IMAGE, SET_THUMBNAIL, SET_TITLE } from '../types';
-import { colorInitState } from './color'
-import { titleInitState } from './title';
+import { ADD_FIELD, REMOVE_ALL_FIELDS, REMOVE_FIELD, SET_AUTHOR, SET_EMBED, SET_FIELD, SET_FOOTER, SET_IMAGE, SET_THUMBNAIL, SET_TITLE } from '../types';
 import {fields} from './fields'
 
 const embedInitState =  {
-    title: titleInitState,
+    title: '',
     url: '',
     description: '',
     author: {
@@ -13,7 +11,7 @@ const embedInitState =  {
       url: '',
       icon_url: '',          
     },
-    color: colorInitState,
+    color: '',
     footer: {
       text: '',
       icon_url: ''
@@ -25,6 +23,20 @@ const embedInitState =  {
 
 const embed = (state = embedInitState, action) => {
     switch (action.type) {
+        case SET_EMBED:
+            return {
+              ...embedInitState,
+              ...action.embed,
+              author: {
+                ...embedInitState.author,
+                ...action.embed.author
+              },
+              footer: {
+                ...embedInitState.footer,
+                ...action.embed.footer
+              },
+              fields: []
+            }
         case SET_DESCRIPTION:
             return {
               ...state,
@@ -38,10 +50,7 @@ const embed = (state = embedInitState, action) => {
         case SET_TITLE:
             return {
               ...state,
-              title: {
-                ...state.title,
-                ...action.title
-              }
+              ...action.title
             }
         case SET_FOOTER:
             return {
