@@ -47,7 +47,7 @@ class MessageBody extends React.Component {
     return <div 
     className="markup"
     onClick={()=>{this.setState({isEdited: true})}}>
-      {this.state.isEdited ? 
+      {this.state.isEdited || this.props.content.length == 0 ? 
       this.renderInput() :
       this.props.parsedContent}
     </div>;
