@@ -24,7 +24,7 @@ class EmbedAuthor extends React.Component {
   renderIcon(){
     return this.state.isIconUrlEdited ? 
     <input 
-      placeholder="Icon URL:"
+      placeholder="Author Image URL:"
       type="text"
       key="icon-url"
       value={this.props.icon_url}
@@ -42,7 +42,7 @@ class EmbedAuthor extends React.Component {
       <input
         key="url"
         type="text"
-        placeholder="Name URL:"
+        placeholder="Author URL:"
         value={this.props.url}
         onChange={(ev)=>this.props.onUpdate(this.props.index, {url: ev.target.value})}
       /> :
@@ -53,7 +53,7 @@ class EmbedAuthor extends React.Component {
   
   renderNamePrompt(){
     return <input
-      placeholder="Name:"
+      placeholder="Author Text:"
       key="name"
       type="text"
       value={this.props.name}

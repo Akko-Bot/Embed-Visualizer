@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import Yaml from 'js-yaml'
 import { 
   setMessageBody,
 
@@ -61,13 +62,13 @@ export const mapStateToProps = (state) => {
     embeds: state.embeds.map(e => filterState(e))
   }
   return {
-    value: JSON.stringify(filterState(state), null, '  ')
+    value: Yaml.dump(filterState(state), null, '  ')
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChange: (fromJSON, change) => {
+    onChange: (discordMessage, change) => {
       const defaultObject = {
         content: '',
         embeds: [{
@@ -90,25 +91,20 @@ const mapDispatchToProps = (dispatch) => {
         }]
       }
 
-      for (var prop in fromJSON) {
-        if ((prop in defaultObject)&&(!Array.isArray(defaultObject[prop]))&&(typeof defaultObject[prop] === 'object')) {
-          Object.assign(defaultObject[prop], fromJSON[prop])
+      for (var prop in discordMessage) {
+        if ((prop in defaultObject) && (!Array.isArray(defaultObject[prop])) && (typeof defaultObject[prop] === 'object')) {
+          Object.assign(defaultObject[prop], discordMessage[prop])
         }
       }
-      const lump = Object.assign(defaultObject, fromJSON) 
 
-      dispatch(setMessageBody(lump.content));
+      const lump = Object.assign(defaultObject, discordMessage)
+
+      dispatch(setMessageBody(lump.content))
       dispatch(removeAllEmbeds())
       lump.embeds.forEach((e, index) => {
-        // dispatch(addEmbed());
+        
         dispatch(setEmbed(index, e))
-        // dispatch(setDescription(index, e.description))
-        // dispatch(setAuthor(index, {...e.author}))
-        // dispatch(setTitle(index, {title: e.title, url: e.url}))
-        // dispatch(setFooter(index, {...e.footer})) 
-        // dispatch(setColor(index, integerToColor(e.color)))
-        // dispatch(setImage(index, e.image))
-        // dispatch(setThumbnail(index, e.thumbnail))
+        
         if(typeof e.fields !== 'undefined')
           e.fields.forEach((f,i) => {
             dispatch(addField())

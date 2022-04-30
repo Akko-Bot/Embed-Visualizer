@@ -19,6 +19,83 @@ const ISO_8601 = /^(\d{4})-(\d\d)-(\d\d)([T ](\d\d):(\d\d):(\d\d)(\.\d+)?(Z)?)?$
 // valid properties first. kinda stupid, but i can't think of other ways
 // to prevent ajv from overriding the disallowed property error. yet, anyway.
 
+/*
+const embedSchema = {
+  "type": "object",
+  "additionalProperties": false,
+  "disallowed": ["type", "provider", "video"],
+  "minProperties": 1,
+  "properties": {
+    "color": { "type": "string", "maxLength": 7, "trim": true },
+    "header": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "thumbnail_url": { "type": "string", "trim": true },
+        "author": {
+          "type": "object",
+          "additionalProperties": false,
+          "disallowed": ["proxy_icon_url"],
+          "required": ["text"],
+          "properties": {
+            "text": { "type": "string", "maxLength": 256, "trim": true },
+            "url": { "type": "string" },
+            "image_url": { "type": "string" },
+            "proxy_icon_url": {}
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "description": { "type": "string", "maxLength": 4096, "trim": true },
+        "image_url": { "type": "string" },
+        "title": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["text"],
+          "properties": {
+            "text": { "type": "string", "maxLength": 256, "trim": true },
+            "url": { "type": "string" }
+          }
+        }
+      }
+    },
+    "footer": {
+      "type": "object",
+      "additionalProperties": false,
+      "disallowed": ["proxy_icon_url"],
+      "required": ["text"],
+      "properties": {
+        "text": { "type": "string", "maxLength": 2048, "trim": true },
+        "image_url": { "type": "string" },
+        "proxy_icon_url": {}
+      }
+    },
+    "fields": {
+      "type": "array",
+      "maxItems": 25,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "value"],
+        "properties": {
+          "title": { "type": "string", "maxLength": 256, "trim": true },
+          "text": { "type": "string", "maxLength": 1024, "trim": true },
+          "inline": { "type": "boolean" }
+        }
+      }
+    },
+    "timestamp": { "type": "string", "pattern": ISO_8601.source },
+    "provider": {},
+    "video": {},
+    "type": {}
+  }
+};
+*/
+
 const embedSchema = {
   "type": "object",
   "additionalProperties": false,
@@ -27,7 +104,7 @@ const embedSchema = {
   "properties": {
     "title": { "type": "string", "maxLength": 256, "trim": true },
     "url": { "type": "string" },
-    "description": { "type": "string", "maxLength": 2048, "trim": true },
+    "description": { "type": "string", "maxLength": 4096, "trim": true },
     "timestamp": { "type": "string", "pattern": ISO_8601.source },
     "color": { "type": "integer", "maximum": UINT24_MAX },
     "footer": {
@@ -35,7 +112,7 @@ const embedSchema = {
       "additionalProperties": false,
       "disallowed": ["proxy_icon_url"],
       "properties": {
-        "text": { "type": "string", "maxLength": 2048, "trim": true },
+        "text": { "type": "string", "maxLength": 256, "trim": true },
         "icon_url": { "type": "string" },
         "proxy_icon_url": {}
       }
@@ -48,7 +125,7 @@ const embedSchema = {
       "disallowed": ["proxy_icon_url"],
       "required": ["name"],
       "properties": {
-        "name": { "type": "string", "maxLength": 256, "trim": true },
+        "name": { "type": "string", "maxLength": 128, "trim": true },
         "url": { "type": "string" },
         "icon_url": { "type": "string" },
         "proxy_icon_url": {}

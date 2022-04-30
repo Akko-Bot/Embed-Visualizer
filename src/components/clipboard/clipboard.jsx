@@ -1,3 +1,4 @@
+import { fromNadekoToAkkoMessage } from '../../constants/converters/nadekotoakkoconverter.js'
 import React from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard';
 
@@ -16,9 +17,9 @@ class Clipboard extends React.Component {
     let prefix = "";
     const vc = this.state.viewCommand;
     if (this.state.viewType === 1)
-      prefix = ".exa \"" + vc + "\" ";
-    else if (this.state.viewType === 2)
-      prefix = ".quoteadd \"" + vc + "\" ";
+      prefix = ".tag add \"" + vc + "\" ";
+    // else if (this.state.viewType === 2)
+    //   prefix = ".quoteadd \"" + vc + "\" ";
     return (
       <div>
         <div className="tabs align-middle">
@@ -30,13 +31,13 @@ class Clipboard extends React.Component {
           <div 
             className={typeTabClasses + (this.state.viewType === 1 ? " selected" : "")} 
             onClick={() => this.setState({viewType: 1})}>
-            Expression
+            Tag
           </div>
-          <div 
+          {/* <div 
             className={typeTabClasses + (this.state.viewType === 2 ? " selected" : "")} 
             onClick={() => this.setState({viewType: 2})}>
             Quote
-          </div>
+          </div> */}
         </div>
         <div className="cmd-name">
           <input
@@ -46,7 +47,7 @@ class Clipboard extends React.Component {
             defaultValue={this.state.viewCommand}
             type="text" placeholder="Name"
             onChange={(e) => this.setState({viewCommand: e.target.value})} />
-          <CopyToClipboard text={prefix+this.props.value}>
+          <CopyToClipboard text={prefix + fromNadekoToAkkoMessage(this.props.value)}>
             <button className="cmd-btn cmd-action whitney">Copy 🔗</button>
           </CopyToClipboard>
         </div>

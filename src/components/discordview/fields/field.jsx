@@ -23,7 +23,7 @@ class EmbedField extends React.Component {
       <input
       type="text" 
       key="name"
-      placeholder="Name:"
+      placeholder="Field Title:"
       value={this.props.name}
       onChange={(ev) => this.props.onUpdate(this.props.index, {name: ev.target.value}, this.props.findex)}/> : 
       this.props.parsedName}
@@ -37,7 +37,7 @@ class EmbedField extends React.Component {
       <input
       type="text" 
       key="value"
-      placeholder="Value:"
+      placeholder="Field Text:"
       value={this.props.value}
       onChange={(ev)=> this.props.onUpdate(this.props.index, {value: ev.target.value}, this.props.findex)}/> : 
       this.props.parsedValue}

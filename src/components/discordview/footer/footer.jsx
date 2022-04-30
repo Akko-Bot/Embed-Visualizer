@@ -23,7 +23,7 @@ class EmbedFooter extends React.Component {
   renderIcon(){
     return this.state.isIconUrlEdited ? 
     <input 
-      placeholder="Footer icon URL:"
+      placeholder="Footer Image URL:"
       type="text"
       value={this.props.icon_url}
       onChange={(ev)=>this.props.onUpdate(this.props.index, {icon_url: ev.target.value})}/> :
@@ -40,7 +40,7 @@ class EmbedFooter extends React.Component {
  
   renderTextPrompt(){
     return <input
-      placeholder="Footer text:"
+      placeholder="Footer Text:"
       type="text"
       value={this.props.text}
       onChange={(ev)=>this.props.onUpdate(this.props.index, {text: ev.target.value})}

@@ -22,7 +22,7 @@ class EmbedDescription extends React.Component {
     return <textarea
       value={this.props.content}
       onChange={(ev) => this.props.onUpdate(this.props.index, ev.target.value)}
-      placeholder="Description, markdown accepted">
+      placeholder="Description, markdown is supported">
       {this.props.content}
     </textarea>
   }

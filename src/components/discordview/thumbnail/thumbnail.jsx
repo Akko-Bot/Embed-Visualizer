@@ -20,7 +20,7 @@ class EmbedThumbnail extends React.Component {
       className="embed-thumb"> 
       {this.state.isEdited ? 
       <input 
-        placeholder="Thumbnail URL:"
+        placeholder="Thumbnail Image URL:"
         type="text"
         value={this.props.url}
         onChange={(ev)=>this.props.onUpdate(this.props.index, ev.target.value)}/> :

@@ -1,7 +1,9 @@
+import { fromAkkoToNadekoMessage } from '../../constants/converters/akkotonadekoconverter.js'
+import { fromNadekoToAkkoMessage } from '../../constants/converters/nadekotoakkoconverter.js'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import debounce from 'lodash.debounce';
-
+import Yaml from 'js-yaml'
 import CM from 'codemirror';
 import 'codemirror/lib/codemirror.css';
 
@@ -62,13 +64,14 @@ const CodeMirror = React.createClass({
   componentWillReceiveProps(next) {
     if (this.instance &&
         next.value !== undefined &&
-        convertLineEndings(this.instance.getValue()) !== convertLineEndings(next.value)) {
+      convertLineEndings(this.instance.getValue()) !== convertLineEndings(fromNadekoToAkkoMessage(next.value))) {
       if (this.props.preserveScrollPosition) {
         const previous = this.instance.getScrollInfo();
-        this.instance.setValue(next.value);
+        this.instance.setValue(fromNadekoToAkkoMessage(next.value));
         this.instance.scrollTo(previous.left, previous.top);
       } else {
-        this.instance.setValue(next.value);
+        // This triggers when the embed is changed
+        this.instance.setValue(fromNadekoToAkkoMessage(next.value));
       }
     }
 
@@ -84,17 +87,20 @@ const CodeMirror = React.createClass({
     }
   },
 
+  // change.origin = 'setValue' when the embedview is edited
+  // change.origin = '+input' when the code mirror is edited
   valueChanged(instance, change) {
     const currentValue = this.instance.getValue()
     try {
-      const parsed = JSON.parse(currentValue)
+      const parsed = Yaml.load(fromAkkoToNadekoMessage(currentValue))
       this.props.updateError('')
+
+      // This method only works when the code mirror is edited
       if (this.props.onChange && change.origin !== 'setValue') {
         this.props.onChange(parsed, change);
       }
     } catch (e) {
-      console.log(e)
-      this.props.updateError('Invalid JSON!')
+      this.props.updateError('Invalid YAML!')
     }
   },
 

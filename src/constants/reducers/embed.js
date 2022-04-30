@@ -11,7 +11,7 @@ const embedInitState =  {
       url: '',
       icon_url: '',          
     },
-    color: '',
+    color: '#007FFF',
     footer: {
       text: '',
       icon_url: ''

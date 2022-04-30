@@ -20,7 +20,7 @@ class MessageBody extends React.Component {
     return <textarea 
     value={this.props.content} 
     onChange={(ev)=>this.props.onUpdate(ev.target.value)}
-    placeholder="Message body, markdown accepted">
+    placeholder="Message content, markdown is supported">
       {this.props.content}
     </textarea>
   }
@@ -47,7 +47,7 @@ class MessageBody extends React.Component {
     return <div 
     className="markup"
     onClick={()=>{this.setState({isEdited: true})}}>
-      {this.state.isEdited || this.props.content.length == 0 ? 
+      {this.state.isEdited || this.props.content.length === 0 ? 
       this.renderInput() :
       this.props.parsedContent}
     </div>;
