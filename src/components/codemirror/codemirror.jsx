@@ -12,7 +12,7 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/addon/edit/closebrackets';
 import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/addon/scroll/simplescrollbars';
-import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/yaml/yaml';
 
 const convertLineEndings = (str) => {
   if (!str) return str;
@@ -24,7 +24,7 @@ const CodeMirror = React.createClass({
     return {
       className: 'w-100 code-mirror-wrap',
       options: {
-        mode: { name: 'javascript', json: true },
+        mode: { name: 'yaml', yaml: true },
         autoCloseBrackets: true,
         matchBrackets: true,
         tabSize: 2,

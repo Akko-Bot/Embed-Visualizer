@@ -17,9 +17,9 @@ class Clipboard extends React.Component {
     let prefix = "";
     const vc = this.state.viewCommand;
     if (this.state.viewType === 1)
-      prefix = ".tag add \"" + vc + "\" ";
+      prefix = "!tag add \"" + vc + "\" ";
     // else if (this.state.viewType === 2)
-    //   prefix = ".quoteadd \"" + vc + "\" ";
+    //   prefix = "!quoteadd \"" + vc + "\" ";
     return (
       <div>
         <div className="tabs align-middle">
