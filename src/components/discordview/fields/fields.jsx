@@ -16,7 +16,8 @@ const EmbedFields = (props)=> {
     )}
     <div className="embed-field embed-field-inline">
       <button
-      onClick={()=>props.onAddField(props.index)}>
+        style={{ width: "520px" }}
+        onClick={()=>props.onAddField(props.index)}>
         Add field
       </button>
     </div>

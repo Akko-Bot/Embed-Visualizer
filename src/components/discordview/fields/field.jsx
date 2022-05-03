@@ -20,7 +20,9 @@ class EmbedField extends React.Component {
     return <div 
     className="embed-field-name">
     {this.state.isEdited ?
-      <input
+      <textarea
+      style={{ height: "47px" }}
+      maxLength="256"
       type="text" 
       key="name"
       placeholder="Field Title:"
@@ -32,9 +34,11 @@ class EmbedField extends React.Component {
 
   renderFieldValue(){
     return <div 
-    className="embed-field-value markup">
+      className="embed-field-value markup">
     {this.state.isEdited ?
-      <input
+      <textarea
+      style={{ height: "47px" }}
+      maxLength="1024"
       type="text" 
       key="value"
       placeholder="Field Text:"

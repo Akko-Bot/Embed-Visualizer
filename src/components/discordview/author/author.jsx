@@ -52,7 +52,9 @@ class EmbedAuthor extends React.Component {
   }
   
   renderNamePrompt(){
-    return <input
+    return <textarea
+      style={{ height: "47px" }}
+      maxLength="128"
       placeholder="Author Text:"
       key="name"
       type="text"

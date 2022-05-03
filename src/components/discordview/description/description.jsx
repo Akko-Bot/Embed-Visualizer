@@ -20,6 +20,8 @@ class EmbedDescription extends React.Component {
 
   renderDescriptionPrompt() {
     return <textarea
+      style={{ width: "520px", height: "80px" }}
+      maxLength="4096"
       value={this.props.content}
       onChange={(ev) => this.props.onUpdate(this.props.index, ev.target.value)}
       placeholder="Description, markdown is supported">

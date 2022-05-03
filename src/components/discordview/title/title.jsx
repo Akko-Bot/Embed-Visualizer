@@ -32,7 +32,9 @@ class EmbedTitle extends React.Component {
   }
   
   renderTitlePrompt(){
-    return <input
+    return <textarea
+      style={{ height: "47px" }}
+      maxLength="256"
       placeholder="Title:"
       key="title"
       type="text"

@@ -39,7 +39,9 @@ class EmbedFooter extends React.Component {
 
  
   renderTextPrompt(){
-    return <input
+    return <textarea
+      style={{ width: "520px", height: "47px" }}
+      maxLength="256"
       placeholder="Footer Text:"
       type="text"
       value={this.props.text}

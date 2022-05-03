@@ -17,7 +17,8 @@ class MessageBody extends React.Component {
   }
 
   renderInput(){
-    return <textarea 
+    return <textarea
+    maxLength="2000"
     value={this.props.content} 
     onChange={(ev)=>this.props.onUpdate(ev.target.value)}
     placeholder="Message content, markdown is supported">
