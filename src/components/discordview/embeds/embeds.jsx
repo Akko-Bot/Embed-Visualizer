@@ -1,11 +1,10 @@
-import React from 'react';
-import Embed from './embed';
-
+import React from 'react'
+import Embed from './embed'
 
 const Embeds = (props) => {
-    return <div
+  return <div
     >{props.embeds.map((embed, i) => {
-        return <Embed
+      return <Embed
             key={i}
             onUpdate={props.onUpdateEmbed}
             onRemove={props.onRemoveEmbed}
@@ -16,7 +15,7 @@ const Embeds = (props) => {
             onClick={() => props.onAddEmbed()}>
                 + Add embed
         </button>}
-    </div>;
+    </div>
 }
 
-export default Embeds;
+export default Embeds

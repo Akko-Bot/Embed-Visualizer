@@ -11,7 +11,7 @@ import EmbedColorPill from './colorpill'
 // }
 
 const mapStateToProps = (state, ownProps) => {
-  const embed = state.embeds[ownProps.index];
+  const embed = state.embeds[ownProps.index]
   return {
     color: embed.color,
     ...ownProps

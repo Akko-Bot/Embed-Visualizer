@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onUpdate: (index, footer) => {
       dispatch(setFooter(index, footer))
-    },
+    }
   }
 }
 

@@ -1,27 +1,27 @@
-import React from 'react';
+import React from 'react'
 import EmbedField from './field'
 
-const EmbedFields = (props)=> {
-  return  <div 
+const EmbedFields = (props) => {
+  return <div
   className="embed-fields">
-    {props.fields.map((f, i) => 
-      <EmbedField 
+    {props.fields.map((f, i) =>
+      <EmbedField
         key={i}
         index={props.index}
         findex={i}
         onUpdate={props.onUpdateField}
-        onRemove={props.onRemoveField} 
+        onRemove={props.onRemoveField}
         {...f}
       />
     )}
     <div className="embed-field embed-field-inline">
       <button
-        style={{ width: "520px" }}
-        onClick={()=>props.onAddField(props.index)}>
+        style={{ width: '520px' }}
+        onClick={() => props.onAddField(props.index)}>
         Add field
       </button>
     </div>
-  </div> 
+  </div>
 }
 
 export default EmbedFields

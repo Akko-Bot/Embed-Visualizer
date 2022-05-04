@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onUpdate: (index, authorContent) => {
       dispatch(setAuthor(index, authorContent))
-    },
+    }
   }
 }
 

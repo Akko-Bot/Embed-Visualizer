@@ -3,10 +3,9 @@ import { setField, addField, removeField } from 'constants/actions'
 import { parseEmbedTitle, parseAllowLinks } from 'lib/markdown'
 import EmbedFields from './fields'
 
-
 const mapStateToProps = (state, ownProps) => {
   return {
-    fields: state.embeds[ownProps.index].fields.map((field, findex)=>{
+    fields: state.embeds[ownProps.index].fields.map((field, findex) => {
       return {
         ...field,
         index: ownProps.index,

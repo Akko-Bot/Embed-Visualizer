@@ -4,7 +4,7 @@ import { parseEmbedTitle } from 'lib/markdown'
 import EmbedTitle from './title'
 
 const mapStateToProps = (state, ownProps) => {
-  const e = state.embeds[ownProps.index];
+  const e = state.embeds[ownProps.index]
   return {
     parsedTitle: parseEmbedTitle(e.title),
     title: e.title,
@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onUpdate: (index, titleContent) => {
       dispatch(setTitle(index, titleContent))
-    },
+    }
   }
 }
 

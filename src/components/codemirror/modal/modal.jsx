@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from 'react'
 
 const Modal = React.createClass({
   propTypes: {
@@ -10,20 +9,20 @@ const Modal = React.createClass({
     children: React.PropTypes.node
   },
 
-  getDefaultProps() {
-    return { maxWidth: '60vw', maxHeight: '90vh' };
+  getDefaultProps () {
+    return { maxWidth: '60vw', maxHeight: '90vh' }
   },
 
-  componentDidMount()    { document.body.style.overflow = 'hidden'; },
-  componentWillUnmount() { document.body.style.overflow = 'auto';   },
+  componentDidMount () { document.body.style.overflow = 'hidden' },
+  componentWillUnmount () { document.body.style.overflow = 'auto' },
 
-  render() {
-    const cls = "z-1 inner shadow-3 br2 overflow-hidden flex flex-column open-sans";
+  render () {
+    const cls = 'z-1 inner shadow-3 br2 overflow-hidden flex flex-column open-sans'
 
     const style = {
       maxWidth: this.props.maxWidth,
       maxHeight: this.props.maxHeight
-    };
+    }
 
     return (
       <div className={cls} style={style}>
@@ -35,9 +34,8 @@ const Modal = React.createClass({
           {this.props.children}
         </div>
       </div>
-    );
-  },
-});
+    )
+  }
+})
 
-
-export default Modal;
+export default Modal

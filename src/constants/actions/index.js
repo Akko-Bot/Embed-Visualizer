@@ -17,18 +17,18 @@ import {
   ADD_FIELD,
   REMOVE_FIELD,
   REMOVE_ALL_FIELDS
-} from 'constants/types';
+} from 'constants/types'
 
 export const setMessageBody = messageBody => {
-    return {
-      type: SET_MESSAGE_BODY,
-      messageBody
-    }
+  return {
+    type: SET_MESSAGE_BODY,
+    messageBody
   }
+}
 
 export const setTitle = (index, title) => {
   return {
-    type: SET_TITLE, 
+    type: SET_TITLE,
     title,
     index
   }
@@ -36,7 +36,7 @@ export const setTitle = (index, title) => {
 
 export const setAuthor = (index, author) => {
   return {
-    type: SET_AUTHOR, 
+    type: SET_AUTHOR,
     author,
     index
   }
@@ -76,7 +76,7 @@ export const setColor = (index, color) => {
 
 export const setFooter = (index, footer) => {
   return {
-    type: SET_FOOTER, 
+    type: SET_FOOTER,
     footer,
     index
   }
@@ -100,7 +100,7 @@ export const addField = index => {
 
 export const removeField = (index, findex) => {
   return {
-    type: REMOVE_FIELD, 
+    type: REMOVE_FIELD,
     index,
     findex
   }

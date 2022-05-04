@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-const Link = ({ children, ...props}) => {
-  return <a target="_blank" rel="noreferrer" {...props}>{children}</a>;
-};
+const Link = ({ children, ...props }) => {
+  return <a target="_blank" rel="noreferrer" {...props}>{children}</a>
+}
 
-export default Link;
+export default Link

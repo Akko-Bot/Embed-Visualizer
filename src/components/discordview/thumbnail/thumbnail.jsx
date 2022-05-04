@@ -1,8 +1,8 @@
-import React from 'react';
-import onClickOutside from "react-onclickoutside";
+import React from 'react'
+import onClickOutside from 'react-onclickoutside'
 
 class EmbedThumbnail extends React.Component {
-  constructor(props){
+  constructor (props) {
     super(props)
     this.state = {
       isEdited: true
@@ -10,27 +10,27 @@ class EmbedThumbnail extends React.Component {
   }
 
   handleClickOutside = ev => {
-    if (this.state.isEdited && this.props.url.length>0){
-      this.setState({isEdited: false})
+    if (this.state.isEdited && this.props.url.length > 0) {
+      this.setState({ isEdited: false })
     }
   }
 
-  render(){
-    return <div 
-      className="embed-thumb"> 
-      {this.state.isEdited ? 
-      <input 
+  render () {
+    return <div
+      className="embed-thumb">
+      {this.state.isEdited
+        ? <input
         placeholder="Thumbnail Image URL:"
         type="text"
         value={this.props.url}
-        onChange={(ev)=>this.props.onUpdate(this.props.index, ev.target.value)}/> :
-      <img
+        onChange={(ev) => this.props.onUpdate(this.props.index, ev.target.value)}/>
+        : <img
         alt="X"
-        src={this.props.url} 
-        role="presentation" 
+        src={this.props.url}
+        role="presentation"
         className="embed-rich-thumb"
         style={{ maxWidth: 80, maxHeight: 80 }}
-      onClick={()=>this.setState({isEdited: true})}/>}
+      onClick={() => this.setState({ isEdited: true })}/>}
     </div>
   }
 }

@@ -2,10 +2,9 @@ import { connect } from 'react-redux'
 import { setEmbed, addEmbed, removeEmbed } from 'constants/actions'
 import Embeds from './embeds'
 
-
 const mapStateToProps = (state) => {
   return {
-    embeds: state.embeds.map((embed, index)=>{
+    embeds: state.embeds.map((embed, index) => {
       return {
         ...embed,
         index

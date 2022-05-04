@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 
-import MessageBodyContainer from './messagebody';
-import MessageTimestamp from 'components/common/timestamp';
-import EmbedsContainer from './embeds';
+import MessageBodyContainer from './messagebody'
+import MessageTimestamp from 'components/common/timestamp'
+import EmbedsContainer from './embeds'
 
 const CozyMessageHeader = ({ compactMode, username }) => {
   if (compactMode) {
-    return null;
+    return null
   }
 
   return (
@@ -18,24 +18,24 @@ const CozyMessageHeader = ({ compactMode, username }) => {
       <span className="highlight-separator"> - </span>
       <MessageTimestamp compactMode={compactMode} />
     </h2>
-  );
-};
+  )
+}
 
 const Avatar = ({ compactMode, url }) => {
   if (compactMode) {
-    return null;
+    return null
   }
 
-  return <div className="avatar-large animate" style={{ backgroundImage: `url('${url}')` }} />;
-};
+  return <div className="avatar-large animate" style={{ backgroundImage: `url('${url}')` }} />
+}
 
 const ErrorHeader = ({ error }) => {
   if (!error) {
-    return null;
+    return null
   }
 
-  return <header className="f6 bg-red br2 pa2 br--top w-100 code pre-wrap">{error}</header>;
-};
+  return <header className="f6 bg-red br2 pa2 br--top w-100 code pre-wrap">{error}</header>
+}
 
 const DiscordViewWrapper = ({ darkTheme, children }) => {
   // yikes
@@ -57,25 +57,25 @@ const DiscordViewWrapper = ({ darkTheme, children }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const DiscordView = React.createClass({
-  getDefaultProps() {
+  getDefaultProps () {
     return {
       username: 'Discord Bot',
-      avatar_url: 'https://cdn.discordapp.com/embed/avatars/0.png',
-    };
+      avatar_url: 'https://cdn.discordapp.com/embed/avatars/0.png'
+    }
   },
 
-  render() {
+  render () {
     const {
       compactMode, darkTheme, webhookMode,
-      username, avatar_url, error,
-    } = this.props;
+      username, avatar_url, error
+    } = this.props
 
-    const bgColor = darkTheme ? 'bg-discord-dark' : 'bg-discord-light';
-    const cls = `w-100 h-100 br2 flex flex-column white overflow-hidden ${bgColor}`;
+    const bgColor = darkTheme ? 'bg-discord-dark' : 'bg-discord-light'
+    const cls = `w-100 h-100 br2 flex flex-column white overflow-hidden ${bgColor}`
 
     return (
       <div className={cls}>
@@ -99,9 +99,8 @@ const DiscordView = React.createClass({
           </div>
         </DiscordViewWrapper>
       </div>
-    );
-  },
-});
+    )
+  }
+})
 
-
-export default DiscordView;
+export default DiscordView

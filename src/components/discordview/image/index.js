@@ -3,7 +3,7 @@ import { setImage } from 'constants/actions'
 import EmbedImage from './image'
 
 const mapStateToProps = (state, ownProps) => {
-  return {url: state.embeds[ownProps.index].image}
+  return { url: state.embeds[ownProps.index].image }
 }
 
 const mapDispatchToProps = (dispatch) => {

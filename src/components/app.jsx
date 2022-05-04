@@ -1,52 +1,52 @@
-import React from 'react';
+import React from 'react'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import visualApp from 'constants/reducers'
-import CodeMirrorContainer from 'components/codemirror';
-import ClipboardContainer from 'components/clipboard';
-import DiscordView from 'components/discordview/discordview';
+import CodeMirrorContainer from 'components/codemirror'
+import ClipboardContainer from 'components/clipboard'
+import DiscordView from 'components/discordview/discordview'
 
-let store = createStore(visualApp)
+const store = createStore(visualApp)
 
 const App = React.createClass({
 
-  getInitialState() {
+  getInitialState () {
     return {
       webhookMode: false,
       compactMode: false,
       darkTheme: true,
-      error: null,
-    };
+      error: null
+    }
   },
 
-  componentWillMount() {
-    //this.validateInput(this.state.input, this.state.webhookMode);
+  componentWillMount () {
+    // this.validateInput(this.state.input, this.state.webhookMode);
   },
 
-  onCodeChange(value, change) {
+  onCodeChange (value, change) {
     // for some reason this fires without the value changing...?
-    /*if (value !== this.state.input) {
+    /* if (value !== this.state.input) {
       this.validateInput(value, this.state.webhookMode);
-    }*/
+    } */
   },
 
-  toggleWebhookMode() {
-    //this.validateInput(this.state.input, !this.state.webhookMode);
+  toggleWebhookMode () {
+    // this.validateInput(this.state.input, !this.state.webhookMode);
   },
 
-  toggleTheme() {
-    this.setState({ darkTheme: !this.state.darkTheme });
+  toggleTheme () {
+    this.setState({ darkTheme: !this.state.darkTheme })
   },
 
-  toggleCompactMode() {
-    this.setState({ compactMode: !this.state.compactMode });
+  toggleCompactMode () {
+    this.setState({ compactMode: !this.state.compactMode })
   },
 
-  updateError(err) {
+  updateError (err) {
     this.setState({ error: err })
   },
 
-  render() {
+  render () {
     return (
       <Provider store={store}>
         <main className="vh-100-l bg-blurple whitney ">
@@ -74,9 +74,8 @@ const App = React.createClass({
           </div>
         </main>
       </Provider>
-    );
-  },
-});
+    )
+  }
+})
 
-
-export default App;
+export default App

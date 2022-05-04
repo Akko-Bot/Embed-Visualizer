@@ -1,40 +1,39 @@
 import { fromNadekoToAkkoMessage } from '../../constants/converters/nadekotoakkoconverter.js'
 import React from 'react'
-import CopyToClipboard from 'react-copy-to-clipboard';
+import CopyToClipboard from 'react-copy-to-clipboard'
 
 class Clipboard extends React.Component {
-  constructor(props){
+  constructor (props) {
     super(props)
     this.state = {
       viewType: 0,
-      viewCommand: "Name"
+      viewCommand: 'Name'
     }
   }
 
-  render(){
-    const typeTabClasses = "type-tab align-middle whitney";
+  render () {
+    const typeTabClasses = 'type-tab align-middle whitney'
 
-    let prefix = "";
-    const vc = this.state.viewCommand;
-    if (this.state.viewType === 1)
-      prefix = "!tag add \"" + vc + "\" ";
+    let prefix = ''
+    const vc = this.state.viewCommand
+    if (this.state.viewType === 1) { prefix = '!tag add "' + vc + '" ' }
     // else if (this.state.viewType === 2)
     //   prefix = "!quoteadd \"" + vc + "\" ";
     return (
       <div>
         <div className="tabs align-middle">
-          <div 
-            className={typeTabClasses + (this.state.viewType === 0 ? " selected" : "")} 
-            onClick={() => this.setState({viewType: 0})}>
+          <div
+            className={typeTabClasses + (this.state.viewType === 0 ? ' selected' : '')}
+            onClick={() => this.setState({ viewType: 0 })}>
             None
           </div>
-          <div 
-            className={typeTabClasses + (this.state.viewType === 1 ? " selected" : "")} 
-            onClick={() => this.setState({viewType: 1})}>
+          <div
+            className={typeTabClasses + (this.state.viewType === 1 ? ' selected' : '')}
+            onClick={() => this.setState({ viewType: 1 })}>
             Tag
           </div>
-          {/* <div 
-            className={typeTabClasses + (this.state.viewType === 2 ? " selected" : "")} 
+          {/* <div
+            className={typeTabClasses + (this.state.viewType === 2 ? " selected" : "")}
             onClick={() => this.setState({viewType: 2})}>
             Quote
           </div> */}
@@ -46,13 +45,14 @@ class Clipboard extends React.Component {
             hidden={this.state.viewType === 0}
             defaultValue={this.state.viewCommand}
             type="text" placeholder="Name"
-            onChange={(e) => this.setState({viewCommand: e.target.value})} />
+            onChange={(e) => this.setState({ viewCommand: e.target.value })} />
           <CopyToClipboard text={prefix + fromNadekoToAkkoMessage(this.props.value)}>
             <button className="cmd-btn cmd-action whitney">Copy 🔗</button>
           </CopyToClipboard>
         </div>
       </div>
-    )}
+    )
+  }
 }
 
 export default Clipboard
